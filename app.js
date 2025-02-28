@@ -1,3 +1,4 @@
+import { watch, watchFile } from 'node:fs'
 import {copyFile, readFile, writeFile, unlink, stat, open} from 'node:fs/promises'
 
 
@@ -23,6 +24,13 @@ console.log(stats)
 console.log(content)
 
 //Ouvrir le fichier
-const file = open('texte.txt', 'a')
-file.write('Ajout de contenue car j ai le flag a')
+const file = await open('texte.txt', 'a')
+file.write('Add file content 2')
 file.close
+
+// // watcher pour suivrer les changements dans un path
+const watcher = watchFile('./')
+
+for await (const event of watcher) {
+    console.log(event)
+}
