@@ -1,5 +1,5 @@
-import { watch, watchFile } from 'node:fs'
-import {copyFile, readFile, writeFile, unlink, stat, open} from 'node:fs/promises'
+import {copyFile, readFile, writeFile, unlink, stat, open, readdir, watch} from 'node:fs/promises'
+import path, { join } from 'node:path'
 
 
 //Ecriture de fichier
@@ -26,11 +26,26 @@ console.log(content)
 //Ouvrir le fichier
 const file = await open('texte.txt', 'a')
 file.write('Add file content 2')
-file.close
+file.close()
 
-// // watcher pour suivrer les changements dans un path
-const watcher = watchFile('./')
+// // watcher pour suivrer les changements dans un dossier
+const watcher = watch('./')
 
-for await (const event of watcher) {
-    console.log(event)
-}
+// for await (const event of watcher) {
+//     console.log(event)
+// } 
+
+//TP Résumé des fichiers et dossiers qui se trouve dans un répértoire
+const files = await readdir('./', {withFileTypes: true })
+files.map(async (file) => {
+    const isDirectory = file.isDirectory()
+    let fileInfo = [
+        isDirectory ? 'Dossier' : 'Fichier',
+        file.name
+    ]
+    if (!isDirectory) {
+        const {size} = await stat(file.name)
+        fileInfo.push(size)
+    }
+    console.log(fileInfo.join(' - '))
+})
