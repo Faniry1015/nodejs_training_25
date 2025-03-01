@@ -45,7 +45,7 @@ const watcher = watch("./");
 //TP Résumé des fichiers et dossiers qui se trouve dans un répértoire et ces sous dossiers
 const filesDetails = async (dir) => {
   const files = await readdir(dir, { withFileTypes: true });
-  Promise.all(files.map(async (file) => {
+  files.map(async (file) => {
     const filePath = path.join(dir, file.name);
     const isDirectory = file.isDirectory();
     let fileInfo = [isDirectory ? "Dossier" : "Fichier", filePath];
@@ -58,7 +58,7 @@ const filesDetails = async (dir) => {
     if (isDirectory) {
       await filesDetails(filePath); // Appel récursif pour explorer les sous-dossiers
     }
-  }));
+  });
 };
 
 filesDetails("./");
