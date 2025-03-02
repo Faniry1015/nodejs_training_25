@@ -4,9 +4,9 @@ import { watch } from "node:fs/promises";
 const [node, _, file] = process.argv;
 
 function spawnNode() {
-    const pr = spawn(node, [file]) 
+  const pr = spawn(node, [file]);
   pr.stdout.pipe(process.stdout);
-  pr.stdout.pipe(process.stderr);
+  pr.stderr.pipe(process.stderr);
 
   pr.on("close", (code) => {
     if (code !== 0) {
@@ -24,7 +24,10 @@ const watcher = watch("./", {
 
 for await (const event of watcher) {
   if (event.filename.endsWith(".js")) {
+    if (childNodeProcess) {
       childNodeProcess.kill('SIGKILL');
-      childNodeProcess = spawnNode();
+      await new Promise(resolve => childNodeProcess.on('close', resolve));
     }
+    childNodeProcess = spawnNode();
   }
+}
