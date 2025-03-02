@@ -10,9 +10,5 @@
     "title": "Updated title from api updated OK cool",
     "completed": true
   },
-  {
-    "id": 6,
-    "title": "Updated title from api updated OK cool",
-    "completed": true
-  }
+  { "id": 6, "title": "Put using switch case", "completed": true }
 ]

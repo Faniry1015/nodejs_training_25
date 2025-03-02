@@ -10,14 +10,22 @@ const server = createServer(async (req, res) => {
   const myURL = new URL(req.url, 'http://localhost:8888');
   const id = myURL.searchParams.get('id');
 
-  if (reqMethod === 'GET') {
-    getTodos(res, todosObj);
-  } else if (reqMethod === 'POST') {
-    await postTodo(req, res, todosObj);
-  } else if (reqMethod === 'DELETE') {
-    deleteTodo(res, todosObj, id);
-  } else if (reqMethod === 'PUT') {
-    putTodo(req, res, todosObj, id);
+  // Switch case
+  switch (reqMethod) {
+    case 'GET':
+      getTodos(res, todosObj);
+      break;
+    case 'POST':
+      await postTodo(req, res, todosObj);
+      break;
+    case 'DELETE':
+      deleteTodo(res, todosObj, id);
+      break;
+    case 'PUT':
+      putTodo(req, res, todosObj, id);
+      break;
+    default:
+      return;
   }
 
   res.end();
