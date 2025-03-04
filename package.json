@@ -1,0 +1,25 @@
+{
+  "name": "nodejs_25_training",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Faniry1015/nodejs_training_25#readme",
+  "bugs": {
+    "url": "https://github.com/Faniry1015/nodejs_training_25/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Faniry1015/nodejs_training_25.git"
+  },
+  "license": "ISC",
+  "author": "Faniriantsoa RANDRIAHARIMINO",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node watcher.js app.js",
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1"
+  }
+}
