@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apprendre Fastify</title>
-</head>
-<body>
-    
-</body>
-</html>
+<% include('./shared/header.ejs') %>
+
+<h1><%= pageTitle %></h1>
+<% if (locals.posts) { %>
+<ul>
+  <% for (post of posts) { %>
+  <li><%= post.title %>: <%= post.body %></li>
+  <% } %> <% } %>
+</ul>
+
+<% include('./shared/footer.ejs') %>

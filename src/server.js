@@ -10,15 +10,26 @@ app.register(fastifyView, {
     }
 })
 
-app.get('/', async (req, res) => {
-    res.view('templates/index.ejs')
+app.get('/', (req, res) => {
+    const posts = [
+        {
+        title: 'Mon premier post',
+        body: 'Le body de mon article'
+    }, {
+        title: 'Mon deuxième article',
+        body: 'Le body de mon deuxième post'
+    }
+]
+    res.view('templates/index.ejs', {
+        posts, pageTitle: 'Apprendre Fastify'
+    })
 })
 
 const start = async () => {
     try {
         await app.listen({port: 3000})
     } catch (err) {
-        app.log.error(err)
+        console.error(err)
         process.exit(1)
     }
 }
