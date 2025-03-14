@@ -1,0 +1,16 @@
+{
+  "name": "fastify_try",
+  "version": "1.0.0",
+  "description": "exercice fastify après sql",
+  "license": "ISC",
+  "author": "Faniry1015",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "fastify": "^5.2.1",
+    "nodemon": "^3.1.9"
+  }
+}

@@ -1,6 +1,6 @@
-<% include('./shared/header.ejs') %>
+<% include('./shared/header.ejs', { title: 'Apprendre Fastify' }) %>
 
-<h1><%= pageTitle %></h1>
+<h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"><%= pageTitle %></h1>
 <% if (locals.posts) { %>
 <ul>
   <% for (post of posts) { %>
