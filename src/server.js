@@ -7,7 +7,8 @@ import { fileURLToPath } from 'node:url';
 
 const app = fastify();
 
-const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
+const root_dir = dirname(dirname(fileURLToPath(import.meta.url)));
+console.log(root_dir)
 
 app.register(fastifyView, {
   engine: {
@@ -16,7 +17,7 @@ app.register(fastifyView, {
 });
 
 app.register(fastifyStatic, {
-  root: join(rootDir, 'public'),
+  root: join(root_dir, 'public'),
 });
 
 app.get('/', (req, res) => {
