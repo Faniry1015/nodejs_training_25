@@ -2,11 +2,10 @@
 
 <h1><%= pageTitle %></h1>
 <% if (locals.posts) { %>
-<ul>
   <% for (post of posts) { %>
-  <li><%= post.title %>: <%= post.body %></li>
+  <h2><%= post.title %></h2>
+  <p><%= post.content %></p>
   <% } %> <% } %>
-</ul>
 
 <% include('./shared/footer.ejs') %>
  

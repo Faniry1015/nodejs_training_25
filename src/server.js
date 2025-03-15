@@ -4,11 +4,20 @@ import ejs from 'ejs';
 import fastifyStatic from '@fastify/static';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { db } from './database.js';
 
 const app = fastify();
 
 const root_dir = dirname(dirname(fileURLToPath(import.meta.url)));
-console.log(root_dir)
+
+app.get('/', (req, res) => {
+  const posts = db.prepare('SELECT * FROM posts').all()
+  console.log(posts)
+  res.view('templates/index.ejs', {
+    posts,
+    pageTitle: 'Apprendre Fastify',
+  });
+});
 
 app.register(fastifyView, {
   engine: {
@@ -18,23 +27,6 @@ app.register(fastifyView, {
 
 app.register(fastifyStatic, {
   root: join(root_dir, 'public'),
-});
-
-app.get('/', (req, res) => {
-  const posts = [
-    {
-      title: 'Mon premier post',
-      body: 'Le body de mon article',
-    },
-    {
-      title: 'Mon deuxième article',
-      body: 'Le body de mon deuxième post',
-    },
-  ];
-  res.view('templates/index.ejs', {
-    posts,
-    pageTitle: 'Apprendre Fastify',
-  });
 });
 
 const start = async () => {
