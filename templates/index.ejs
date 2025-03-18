@@ -1,8 +1,8 @@
 <%- include('./shared/header.ejs', { title: 'Apprendre Fastify shared' }) %>
 
-<h1><%= pageTitle || 'Titre par défaut' %></h1>
+<h1 class="text-3xl font-bold text-gray-800 my-5"><%= pageTitle || 'Titre par défaut' %></h1>
 <% if (locals.posts && posts.length > 0) { %>
-<div class="flex flex-wrap">
+<div class="grid grid-cols-3 gap-3">
   <% for (const post of posts) { %> <%- include('./post.ejs', { post }) %> <% }
   %>
 </div>
