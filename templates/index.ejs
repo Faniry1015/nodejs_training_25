@@ -2,12 +2,10 @@
 
 <h1><%= pageTitle || 'Titre par défaut' %></h1>
 <% if (locals.posts && posts.length > 0) { %>
-  <% for (const post of posts) { %>
-  <h2><%= post.title %></h2>
-  <p class="content"><%= post.content %></p>
-  <% } %>
+<div class="flex flex-wrap">
+  <% for (const post of posts) { %> <%- include('./post.ejs', { post }) %> <% }
+  %>
+</div>
 <% } else { %>
-  <p>Aucun post disponible.</p>
-<% } %>
-
-<%- include('./shared/footer.ejs') %>
+<p>Aucun post disponible.</p>
+<% } %> <%- include('./shared/footer.ejs') %>
