@@ -4,8 +4,7 @@ import ejs from 'ejs';
 import fastifyStatic from '@fastify/static';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { db } from './database.js';
-import { list_posts, show_article } from './actions/posts.js';
+import { create_post, list_posts, show_article } from './actions/posts.js';
 import { record_not_found_error } from './errors/record_not_found_error.js';
 
 const app = fastify();
@@ -16,16 +15,19 @@ app.get('/', list_posts);
 
 app.get('/articles/:id', show_article);
 
+app.post('/', create_post);
+
 app.setErrorHandler((error, req, res) => {
   const id = req.params.id;
   if (error instanceof record_not_found_error) {
     res.statusCode = 404;
     return res.view('templates/404.ejs', { id, pageTitle: 'Page not found' });
   }
-  res.statusCode = 500
+  console.error(error)
+  res.statusCode = 500;
   return {
-    error: error.message
-  }
+    error: error.message,
+  };
 });
 
 app.register(fastifyView, {

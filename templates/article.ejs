@@ -1,0 +1,14 @@
+<%- include('./shared/header.ejs', { title: 'Apprendre Fastify shared' }) %>
+
+<h1 class="text-3xl font-bold text-gray-800 my-5">
+  <%= pageTitle || 'Titre par défaut' %>
+</h1>
+<h3 class="text-xl font-bold text-gray-800 my-5"><%= post.title %></h3>
+<p class="text-gray-600"><%= post.content %></p>
+
+<div
+  class="w-[fit-content] bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 m-6 fit-content"
+>
+  <a href="/"> Retour à la page d'Accueil</a>
+</div>
+<%- include('./shared/footer.ejs') %>

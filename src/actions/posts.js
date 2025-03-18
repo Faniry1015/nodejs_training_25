@@ -15,8 +15,13 @@ export const show_article = (req, res) => {
   if (!post) {
     throw new record_not_found_error(`L'article n°${req.params.id} est introuvable`);
   }
-  res.view('templates/articles.ejs', {
+  res.view('templates/article.ejs', {
     post,
     pageTitle: `Article n°${post.id}`,
   });
+}
+
+export const create_post = (req, res) => {
+  const post = db.prepare('INSERT INTO posts (title, content) VALUES (?, ?)').run(req.body.title, req.body.content)
+  res.redirect(`/articles/${post.lastInsertRowid}`)
 }
