@@ -1,11 +1,13 @@
-<% include('./shared/header.ejs', { title: 'Apprendre Fastify' }) %>
+<%- include('./shared/header.ejs', { title: 'Apprendre Fastify shared' }) %>
 
-<h1><%= pageTitle %></h1>
-<% if (locals.posts) { %>
-  <% for (post of posts) { %>
+<h1><%= pageTitle || 'Titre par défaut' %></h1>
+<% if (locals.posts && posts.length > 0) { %>
+  <% for (const post of posts) { %>
   <h2><%= post.title %></h2>
-  <p><%= post.content %></p>
-  <% } %> <% } %>
+  <p class="content"><%= post.content %></p>
+  <% } %>
+<% } else { %>
+  <p>Aucun post disponible.</p>
+<% } %>
 
-<% include('./shared/footer.ejs') %>
- 
+<%- include('./shared/footer.ejs') %>

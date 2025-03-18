@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
   console.log(posts)
   res.view('templates/index.ejs', {
     posts,
-    pageTitle: 'Apprendre Fastify',
+    pageTitle: 'Apprendre Fastify from server',
   });
 });
 
