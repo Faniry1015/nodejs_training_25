@@ -22,6 +22,8 @@ export const show_article = (req, res) => {
 }
 
 export const create_post = (req, res) => {
-  const post = db.prepare('INSERT INTO posts (title, content) VALUES (?, ?)').run(req.body.title, req.body.content)
-  res.redirect(`/articles/${post.lastInsertRowid}`)
+  const currentDate = new Date().toISOString();
+  const slug = req.body.title.toLowerCase().replace(/ /g, '-'); // Generate slug from title
+  const post = db.prepare('INSERT INTO posts (title, content, created_at, slug) VALUES (?, ?, ?, ?)').run(req.body.title, req.body.content, currentDate, slug);
+  res.redirect(`/articles/${post.lastInsertRowid}`);
 }

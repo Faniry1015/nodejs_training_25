@@ -6,6 +6,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { create_post, list_posts, show_article } from './actions/posts.js';
 import { record_not_found_error } from './errors/record_not_found_error.js';
+import fastifyFormbody from '@fastify/formbody';
 
 const app = fastify();
 
@@ -39,6 +40,8 @@ app.register(fastifyView, {
 app.register(fastifyStatic, {
   root: join(root_dir, 'public'),
 });
+
+app.register(fastifyFormbody);
 
 const start = async () => {
   try {
