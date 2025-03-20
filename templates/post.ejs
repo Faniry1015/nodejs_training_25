@@ -1,5 +1,11 @@
 <div class="max-w-md border-2 border-gray-300 rounded-xl p-4">
     <h1 class="text-grey-900 font-bold text-xl"><%= post.title %></h1>
     <p class="text-grey-700"><%= post.content.split('\n\n')[0].substring(0, 150) %>...</p>
-    <a href="/articles/<%= post.id %>" class="text-blue-600 underline">Lire la suite</a>
+    <form action="/articles/<%= post.id %>" method="GET">
+        <button type="submit" class="text-blue-600">Lire la suite</button>
+    </form>
+    <form action="/articles/<%= post.id %>?_method=DELETE" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="text-red-600">Supprimer l'article</button>
+    </form>
 </div>

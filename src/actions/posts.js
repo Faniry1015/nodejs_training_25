@@ -27,3 +27,12 @@ export const create_post = (req, res) => {
   const post = db.prepare('INSERT INTO posts (title, content, created_at, slug) VALUES (?, ?, ?, ?)').run(req.body.title, req.body.content, currentDate, slug);
   res.redirect(`/articles/${post.lastInsertRowid}`);
 }
+
+export const delete_post = (req, res) => {
+  const post = db.prepare('SELECT * FROM posts WHERE id = ?').get(req.params.id)
+  if (!post) {
+    throw new record_not_found_error(`L'article n°${req.params.id} est introuvable`);
+  }
+  db.prepare('DELETE FROM posts WHERE id = ?').run(req.params.id);
+  res.redirect('/');
+}
