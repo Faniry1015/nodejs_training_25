@@ -18,7 +18,7 @@ app.get('/articles/:id', show_article);
 
 app.post('/', create_post);
 
-app.delete('/articles/:id', delete_post);
+app.post('/delete/:id', delete_post);
 
 app.setErrorHandler((error, req, res) => {
   const id = req.params.id;

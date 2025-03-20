@@ -4,8 +4,7 @@
     <form action="/articles/<%= post.id %>" method="GET">
         <button type="submit" class="text-blue-600">Lire la suite</button>
     </form>
-    <form action="/articles/<%= post.id %>?_method=DELETE" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
+    <form action="/delete/<%= post.id %>" method="POST">
         <button type="submit" class="text-red-600">Supprimer l'article</button>
     </form>
 </div>
