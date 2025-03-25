@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { create_post, delete_post, list_posts, show_article } from './actions/posts.js';
 import { record_not_found_error } from './errors/record_not_found_error.js';
 import fastifyFormbody from '@fastify/formbody';
-import { log_user, login_action } from './actions/auth.js';
+import { login_action, logout_action } from './actions/auth.js';
 
 const app = fastify();
 
@@ -21,9 +21,10 @@ app.post('/', create_post);
 
 app.post('/delete/:id', delete_post);
 
-app.get('/login', login_action)
+app.get('/login', login_action);
+app.post('/login', login_action);
 
-app.post('/login', log_user)
+app.get('/logout', logout_action);
 
 app.setErrorHandler((error, req, res) => {
   const id = req.params.id;
