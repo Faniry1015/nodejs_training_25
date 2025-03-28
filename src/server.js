@@ -31,7 +31,7 @@ app.post('/delete/:id', delete_post);
 app.get('/login', login_action);
 app.post('/login', login_action);
 
-app.get('/logout', logout_action);
+app.post('/logout', logout_action);
 
 app.setErrorHandler((error, req, res) => {
   const id = req.params.id;

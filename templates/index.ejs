@@ -2,9 +2,18 @@
 <h1 class="text-3xl font-bold text-gray-800 my-5">
   <%= pageTitle || 'Titre par défaut' %>
 </h1>
+<% if (locals.user === undefined) { %>
+    <div class="w-[fit-content] bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 m-6 fit-content">
+      <a href="/login">Connexion</a>
+    </div>
+<% } %>
 
 <% if (locals.user) { %>
-<h2>Bonjour <%- locals.user %></h2>
+<h2>Bonjour <%- locals.user %>     <div class="w-[fit-content] bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700 m-6 fit-content">
+  <form action="/logout" method="POST">
+  <button type="submit">Déconnexion</button>
+  </form>
+</div></h2>
 
 <form
   action=""

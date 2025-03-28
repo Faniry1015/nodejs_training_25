@@ -19,5 +19,6 @@ export const login_action = async (req, res) => {
 }
 
 export const logout_action = (req, res) => {
-    res.redirect('/');
+    req.session.delete('user');
+    return res.redirect('/login');
 }
