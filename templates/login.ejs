@@ -1,7 +1,7 @@
 <%- include('./shared/header.ejs', { title: 'Connexion' }) %>
 
 <h1 class="text-3xl font-bold text-gray-800 my-5">Connexion</h1>
-<% if (locals.error) { %><p class="text-gray-800 my-5"><%= locals.error %></p><% } %>
+<% if (locals.error) { %><div class="max-w-md bg-red-100 rounded"><p class="text-red-500 my-5"><%= locals.error %></p></div><% } %>
 
 <form action="/login" method="POST" class="max-w-md mx-auto bg-white shadow-md rounded-lg p-6 space-y-4">
   <div>

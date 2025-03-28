@@ -26,14 +26,14 @@
     "@fastify/view": "^10.0.2",
     "@phc/argon2": "^1.0.9",
     "@tailwindcss/cli": "^4.0.14",
-    "@tailwindcss/postcss": "^4.0.14",
+    "@tailwindcss/postcss": "^4.0.17",
     "autoprefixer": "^10.4.21",
     "better-sqlite3": "^11.9.0",
     "chalk": "^5.4.1",
     "ejs": "^3.1.10",
     "fastify": "^5.2.1",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.14"
+    "tailwindcss": "^4.0.17"
   },
   "devDependencies": {
     "nodemo": "^1.0.0"
