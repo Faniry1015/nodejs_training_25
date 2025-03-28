@@ -2,10 +2,12 @@ import { db } from "../database.js";
 import { record_not_found_error } from "../errors/record_not_found_error.js";
 
 export const list_posts = (req, res) => {
+  const user = req.session.get('user')
   const posts = db.prepare('SELECT * FROM posts ORDER BY created_at DESC').all()
   res.view('templates/index.ejs', {
     posts,
     pageTitle: 'Apprendre Fastify from server',
+    user
   });
 }
 

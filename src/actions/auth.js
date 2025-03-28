@@ -9,7 +9,8 @@ export const login_action = async (req, res) => {
         if (username) {
             const user_db = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
             if (user_db && await verify(user_db.password, password)) {
-                return req.body
+                req.session.set('user', username)
+                return res.redirect('/');
             }
         }
         params.error = 'Nom d\'utilisateur ou mot de passe incorrect';

@@ -1,10 +1,20 @@
 <%- include('./shared/header.ejs', { title: 'Apprendre Fastify shared' }) %>
+<h1 class="text-3xl font-bold text-gray-800 my-5">
+  <%= pageTitle || 'Titre par défaut' %>
+</h1>
 
-<h1 class="text-3xl font-bold text-gray-800 my-5"><%= pageTitle || 'Titre par défaut' %></h1>
+<% if (locals.user) { %>
+<h2>Bonjour <%- locals.user %></h2>
 
-<form action="" method="post" class="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6 space-y-4 my-5">
+<form
+  action=""
+  method="post"
+  class="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6 space-y-4 my-5"
+>
   <div>
-    <label for="title" class="block text-gray-700 font-medium mb-2">Titre</label>
+    <label for="title" class="block text-gray-700 font-medium mb-2"
+      >Titre</label
+    >
     <input
       type="text"
       name="title"
@@ -14,7 +24,9 @@
     />
   </div>
   <div>
-    <label for="content" class="block text-gray-700 font-medium mb-2">Contenu</label>
+    <label for="content" class="block text-gray-700 font-medium mb-2"
+      >Contenu</label
+    >
     <textarea
       name="content"
       id="content"
@@ -32,10 +44,7 @@
     </button>
   </div>
 </form>
-
-
-
-<% if (locals.posts && posts.length > 0) { %>
+<% } %> <% if (locals.posts && posts.length > 0) { %>
 <div class="grid grid-cols-3 gap-3">
   <% for (const post of posts) { %> <%- include('./post.ejs', { post }) %> <% }
   %>
