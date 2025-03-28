@@ -15,6 +15,7 @@ import { record_not_found_error } from './errors/record_not_found_error.js';
 import fastifyFormbody from '@fastify/formbody';
 import { login_action, logout_action } from './actions/auth.js';
 import { readFileSync } from 'node:fs';
+import { not_authenticated_error } from './errors/not_authenticated_error.js';
 
 const app = fastify();
 
@@ -38,6 +39,8 @@ app.setErrorHandler((error, req, res) => {
   if (error instanceof record_not_found_error) {
     res.statusCode = 404;
     return res.view('templates/404.ejs', { id, pageTitle: 'Page not found' });
+  } else if (error instanceof not_authenticated_error) {
+    return res.redirect('/login');
   }
   console.error(error);
   res.statusCode = 500;

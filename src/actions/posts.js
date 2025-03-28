@@ -1,5 +1,6 @@
 import { db } from "../database.js";
 import { record_not_found_error } from "../errors/record_not_found_error.js";
+import { verify_user } from "../functions/verify_user.js";
 
 export const list_posts = (req, res) => {
   const user = req.session.get('user')
@@ -23,6 +24,7 @@ export const show_article = (req, res) => {
 }
 
 export const create_post = (req, res) => {
+  verify_user(req)
   const slug = req.body.title.toLowerCase().replace(/ /g, '-'); // Generate slug from title
   const post = db.prepare('INSERT INTO posts (title, content, created_at, slug) VALUES (?, ?, ?, ?)').run(req.body.title, req.body.content, Math.round(Date.now() / 1000), slug);
   res.redirect(`/articles/${post.lastInsertRowid}`);

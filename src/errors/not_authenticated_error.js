@@ -1,0 +1,1 @@
+export class not_authenticated_error extends Error {}
